@@ -16,7 +16,7 @@
         <label>Price (PGK):</label>
         <input type="number" name="price" required>
         <label>Duration (mins):</label>
-        <input type="number" name="duration" required>
+        <td>{{ (tool.duration / 60) | round(1) }} hours</td>
         <button type="submit">Update Tool</button>
     </form>
     <hr>
