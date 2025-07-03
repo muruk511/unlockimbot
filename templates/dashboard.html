@@ -20,16 +20,17 @@
         <button type="submit">Update Tool</button>
     </form>
     <hr>
-    <table border="1">
-        <tr><th>Name</th><th>Status</th><th>Price</th><th>Duration</th></tr>
-        {% for tool in tools %}
-        <tr>
-            <td>{{ tool.name }}</td>
-            <td>{{ tool.status }}</td>
-            <td>{{ tool.price }}</td>
-            <td>{{ tool.duration }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<table border="1">
+    <tr><th>Name</th><th>Status</th><th>Price</th><th>Duration</th></tr>
+    {% for tool in tools %}
+    <tr>
+        <td>{{ tool.name }}</td>
+        <td>{{ tool.status }}</td>
+        <td>{{ tool.price }}</td>
+        <td>{{ (tool.duration / 60) | round(1) }} hours</td>
+    </tr>
+    {% endfor %}
+</table>
+
 </body>
 </html>
