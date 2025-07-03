@@ -56,7 +56,9 @@ def tool_rental():
         tools = [doc.to_dict() for doc in tools_ref.stream()]
         msg = "\ud83d\udee0\ufe0f Available Tools for Rent:\n"
         for tool in tools:
-            msg += f"{tool['name']}: {'✅' if tool['status'] == 'available' else '❌ In Use'} - PGK {tool['price']} / {tool['duration']} mins\n"
+            duration_hr = round(tool['duration'] / 60, 1)
+            msg += f"{tool['name']}: {'✅' if tool['status'] == 'available' else '❌ In Use'} - PGK {tool['price']} / {duration_hr} hours\n"
+
         return jsonify({"response": msg})
     except Exception as e:
         print(f"Error fetching tools: {e}")
@@ -68,7 +70,9 @@ def tool_status(toolname):
         doc = tools_ref.document(toolname).get()
         if doc.exists:
             tool = doc.to_dict()
-            msg = f"🔍 {tool['name']} Status:\nStatus: {'✅ Available' if tool['status']=='available' else '❌ In Use'}\nPrice: PGK {tool['price']}\nDuration: {tool['duration']} mins"
+            duration_hr = round(tool['duration'] / 60, 1)
+            msg = f"🔍 {tool['name']} Status:\nStatus: {'✅ Available' if tool['status']=='available' else '❌ In Use'}\nPrice: PGK {tool['price']}\nDuration: {duration_hr} hours"
+
             return jsonify({"response": msg})
         return jsonify({"response": "Tool not found."})
     except Exception as e:
