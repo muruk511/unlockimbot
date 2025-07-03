@@ -15,16 +15,17 @@ tools_ref = db.collection("tools")
 # Admin Panel (basic password protection)
 ADMIN_PASSWORD = os.getenv("ADMIN_PASS", "unlockadmin")
 
+import traceback
+
 @app.route("/")
 def home():
-    print("Home route accessed")
     try:
         tools = [doc.to_dict() for doc in tools_ref.stream()]
-        print(f"Loaded {len(tools)} tools")
         return render_template("dashboard.html", tools=tools)
     except Exception as e:
-        print(f"Error loading dashboard: {e}")
-        return "Error loading dashboard", 500
+        error_trace = traceback.format_exc()
+        print(f"Error loading dashboard: {error_trace}")
+        return f"<h1>Error loading dashboard</h1><pre>{error_trace}</pre>", 500
 
 @app.route("/login", methods=["POST"])
 def login():
