@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unlockim Fone PNG - Admin Dashboard</title>
+</head>
+<body>
+    <h1>Tool Rental Dashboard</h1>
+    <form method="POST" action="/update_tool">
+        <label>Tool:</label>
+        <input name="tool" required>
+        <label>Status:</label>
+        <select name="status">
+            <option value="available">Available</option>
+            <option value="in_use">In Use</option>
+        </select>
+        <label>Price (PGK):</label>
+        <input type="number" name="price" required>
+        <label>Duration (mins):</label>
+        <input type="number" name="duration" required>
+        <button type="submit">Update Tool</button>
+    </form>
+    <hr>
+    <table border="1">
+        <tr><th>Name</th><th>Status</th><th>Price</th><th>Duration</th></tr>
+        {% for tool in tools %}
+        <tr>
+            <td>{{ tool.name }}</td>
+            <td>{{ tool.status }}</td>
+            <td>{{ tool.price }}</td>
+            <td>{{ tool.duration }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
