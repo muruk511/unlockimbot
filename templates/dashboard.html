@@ -20,10 +20,10 @@
         <button type="submit">Update Tool</button>
     </form>
     <hr>
-<table border="1">
-    <tr><th>Name</th><th>Status</th><th>Price</th><th>Duration</th></tr>
-    {% for tool in tools %}
-    <tr>
+    	<table border="1">
+            <tr><th>Name</th><th>Status</th><th>Price</th><th>Duration</th></tr>
+                {% for tool in tools %}
+            <tr>
         <td>{{ tool.name }}</td>
         <td>{{ tool.status }}</td>
         <td>{{ tool.price }}</td>
