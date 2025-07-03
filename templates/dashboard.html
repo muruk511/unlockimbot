@@ -15,8 +15,8 @@
         </select>
         <label>Price (PGK):</label>
         <input type="number" name="price" required>
-        <label>Duration (mins):</label>
-        <input type="number" name="duration" required>
+        <label>Duration (hours):</label>
+        <input type="number" name="duration" step="0.1" required>
         <button type="submit">Update Tool</button>
     </form>
     <hr>
@@ -27,7 +27,7 @@
             <td>{{ tool.name }}</td>
             <td>{{ tool.status }}</td>
             <td>{{ tool.price }}</td>
-            <td>{{ (tool.duration / 60) | round(1) }} hours</td>
+            <td>{{ tool.duration }} hours</td>
         </tr>
         {% endfor %}
     </table>
